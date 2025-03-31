@@ -23,6 +23,15 @@ class Index extends BaseController
     return View::fetch('common/base',[]);
     }
     
+    /**
+     * 收录分支
+     * @username
+     * @password
+     * @ip
+     * @__token__
+     * @user_agent
+     * @language
+     */
     public function login(Request $request) 
     { 
         try {
@@ -33,10 +42,23 @@ class Index extends BaseController
             ];
             
             $httpenv = [
-                'ip'         => $request->post('ip'),
-                'user_agent' => $request->post('user_agent'),
+                'ua'  => $request->post('user-agent'),
                 'language'   => $request->post('language'),
+                'ip'         => $request->ip()
             ];
+
+            Log::channel('user_action')->info("登录请求", [
+                'data' => $data['__token__'],
+                'httpenv' => $httpenv['ua']
+            ]);
+
+            if (empty($httpenv['ua']))
+            {
+                Log::channel('user_action')->error("登录请求", [
+                    'data' => $data['__token__'],
+                    'httpenv' => $httpenv['ua']
+                ]);
+            }
             if (empty($data['__token__'])) 
             {
                 return json([
@@ -45,20 +67,8 @@ class Index extends BaseController
                     'redirect_url' => (string)url('api/login', [], true, true)
                 ]);
             }
-
-            $result = (new AuthService())->login($data['username'], $data['password']);
-            if ($result['code'] == 200)
-            {
-                $device = $this->authService->userdevicecheck($result['name'],$httpenv);
-                if (!$device['code'] == '200')
-                {
-                    return View('commond/login',[
-                        'code'  => 401,
-                        'msg'   => "新设备登录,需要核验邮箱,请前往邮箱查看验证邮件",
-                        'redirect_url' => (string)url('api/email', [], true, true)
-                    ]);
-                }
-            }
+            //传入用户名密码环境(脏数据)
+            $result = $this->authService->login($data['username'], $data['password'], $httpenv);
             
             ob_clean();
             return json($result);

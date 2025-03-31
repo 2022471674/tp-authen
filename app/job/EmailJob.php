@@ -21,7 +21,8 @@ class EmailJob
             $emailService = new EmailService();
             $result = $emailService->sendQmail($data, $title);
 
-            if ($result['code'] === 200) {
+            if ($result['code'] === 200) 
+            {
                 $job->delete();
                 Log::debug("邮件发送成功", ['email' => $data['email']]);
             } else {

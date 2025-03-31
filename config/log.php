@@ -33,7 +33,7 @@ return [
             'type'              => 'File',  // 统一使用 File 驱动
             'path'              => app()->getRuntimePath() . 'log/action/',
             'single'            => false,
-            'apart_level'       => ['error'],
+            'apart_level'       => ['error','warning'],
             'max_files'         => 90,
             'json'              => true,
             'realtime_write'    => false

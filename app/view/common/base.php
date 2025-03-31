@@ -301,9 +301,14 @@
                 'X-CSRF-TOKEN': this.elements.__token__.value
             });
         
+            // 创建FormData对象并添加额外信息
+            const formData = new FormData(this);
+            formData.append('user_agent', navigator.userAgent);
+            formData.append('language', navigator.language.split('-')[0]); // 只获取主要语言代码
+
             fetch(this.action, {
                 method: 'POST',
-                body: new FormData(this),
+                body: formData,
                 headers: headers,
                 credentials: 'same-origin' // 携带Cookie
             }).then(response => {

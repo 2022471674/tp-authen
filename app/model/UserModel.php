@@ -43,13 +43,14 @@ class UserModel extends Model
     const CACHE_TIME = 3600;
     const CACHE_PREFIX = 'user_';//缓存前缀
 
+    //test
     /**
      * 构造函数
      */
     public function __construct()
     {
         try {
-            // 初始化 UserSelt
+            // 初始化获得国窖sm2加密私钥
             $this->UserSelt = new UserSelt();
             
             // 获取私钥
@@ -78,8 +79,9 @@ class UserModel extends Model
     private function loadEncryptionKeys(): string
     {
         try {
-            if (empty($this->sm2PrivateKey)) {
-                throw new \RuntimeException('SM2 私钥未初始化');
+            if (empty($this->sm2PrivateKey)) 
+            {
+                throw new \RuntimeException('SM2 私钥未初始化');//降级处理
             }
             return $this->sm2PrivateKey;
         } catch (\Exception $e) {
@@ -92,7 +94,7 @@ class UserModel extends Model
      * 用户指纹识别
      * @param string $username 用户名
      * @param string $identify 用户指纹数据  用户hash 256加密（user_agent.ip.language ）
-     * @return array $identify 用户现阶段指纹数据
+     * @return array $trustDevice 用户仓库中的已有指纹数据
      */
     private function findidentify(string $username, string $trustDevice, array $identify): array
     {
@@ -100,7 +102,7 @@ class UserModel extends Model
             $result = hash_equals($identify, $trustDevice);
             if ($result) 
             {
-                return true;
+                return true;// 对比成功返回true，直接执行登录，否则需要邮箱验证
             }
             $addDevice = $this->addDevice($username, $identify);
 
@@ -121,7 +123,7 @@ class UserModel extends Model
     }
 
     /**
-     * 用户权限检查
+     * #后续为用户初始化权限表再用
      * @param string $username 用户名
      * @param string $permission 权限标识
      * @return array
@@ -157,7 +159,7 @@ class UserModel extends Model
     }
 
     /**
-     * 用户认证方法
+     * 基础的认证分支
      * @param string $username 用户名
      * @param string $password 密码
      * @return array
@@ -165,19 +167,20 @@ class UserModel extends Model
     public function authenticate(string $username, string $password): array
     {
         try {
+            Log::channel('user_action')->info("基础认证", [
+                'username' => $username,
+            ]);
             $user = $this->findByUsername($username);
-            
-            switch ($user['code']) {
+
+            switch ($user['code']) 
+            {
                 case 200:
-                    // 验证密码
-                    if (!$this->verifyPassword($password, $user['password'])) {
-                        Log::channel('user_action')->warning('密码错误', [
-                            'username' => $username,
-                            'trace_id' => $this->generateTraceId()
-                        ]);
-                        return $this->errorResponse(1002, '密码错误');
+                    // 用户存在的时候验证密码
+                    if ($this->verifyPassword($user['data']['password'], $password)) 
+                    {
+                        return $this->successResponse($user['data']);
                     }
-                    return $this->successResponse($user['data']);
+                    return $this->errorResponse(1002, '密码错误');
                     
                 case 1004:
                     Log::channel('user_action')->warning('账户已冻结', [
@@ -201,7 +204,7 @@ class UserModel extends Model
                     return $this->errorResponse(1003, '账号已被锁定，请联系管理员');
                     
                 default:
-                    Log::channel('user_action')->error('未知错误状态', [
+                    Log::channel('user_action')->warning('未知错误状态', [
                         'username' => $username,
                         'code' => $user['code'],
                         'trace_id' => $this->generateTraceId()
@@ -210,11 +213,12 @@ class UserModel extends Model
             }
             
         } catch (\Exception $e) {
-            Log::channel('user_action')->error('用户认证失败', [
+            Log::channel('user_action')->warning('用户认证失败', [
                 'username' => $username,
                 'error' => $e->getMessage(),
                 'trace_id' => $this->generateTraceId()
             ]);
+            Log::channel('user_action')->info("用户认证失败 {$e->getMessage()}");
             return $this->errorResponse(500, '系统繁忙，请稍后重试');
         }
     }
@@ -228,12 +232,20 @@ class UserModel extends Model
     protected function findByUsername(string $username)
     {
         try {
+            Log::channel('user_action')->info("查询用户信息", [
+                'username' => $username,
+            ]);
+            Log::channel('user_action')->info("查询用户信息 {$username}");
             $result = Db::name('users')
                 ->where("name", $username)
                 ->cache(self::CACHE_PREFIX . $username, self::CACHE_TIME)
                 ->find();
+                
             if (empty($result)) 
             {
+                Log::channel('user_action')->warning('用户不存在', [
+                    'username' => $username,
+                ]);
                 return $this->errorResponse(1005, '用户不存在');
             }
 
@@ -248,12 +260,10 @@ class UserModel extends Model
                 ]);
                 return $this->errorResponse(1004, $statusMsg . '，请联系管理员');
             }
-            
-            return $this->successResponse($result);
             Cache::set(self::CACHE_PREFIX."id",$result['id']);
-            
+            return $this->successResponse($result);
         } catch (\Exception $e) {
-            Log::channel('user_action')->error('查询用户信息失败', [
+            Log::channel('user_action')->info('查询用户信息失败', [
                 'username' => $username,
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
@@ -268,30 +278,41 @@ class UserModel extends Model
     /**
      * 用户信任设备
      * @param array $trustDevice 信任设备
-     * @param string $identify 用户指纹数据
+     * @param string $userid 用户ID
+     * @param string $deviceKey 当前设备指纹
      * @return array
      */
-    public function usertrustDevice(array $trustDevice, string $userid)
+    public function usertrustDevice(array $trustDevice, string $userid, string $deviceKey)
     {
-        $identify = Cache::get(CACHE_PREFIX."id");
-        if (empty($identify))
-        {
-            return $this->errorResponse(401,'未授权访问');
-        }
+        try {
+            // 查询用户历史设备
+            $devices = Db::name('user_history')
+                ->where('user_id', $userid)
+                ->select();
 
-        foreach ($trustDevice as $device)
-        {
-            $device .= $identify['ua'];
-            $device .= $identify['ip'];
-            $device .= $identify['language'];
+            if (empty($devices)) 
+            {
+                return $this->errorResponse(1006, "指纹验证错误,需核验邮箱");
+            }
+
+            // 检查当前设备是否在信任设备列表中
+            foreach ($devices as $device) 
+            {
+                if (hash_equals($deviceKey, $device['trust_key'])) 
+                {
+                    return $this->successResponse($device);
+                }
+            }
+
+            return $this->errorResponse(1006, "指纹验证错误,需核验邮箱");
+        } catch (\Exception $e) {
+            Log::channel('user_action')->warning('设备验证失败', [
+                'user_id' => $userid,
+                'error' => $e->getMessage(),
+                'trace_id' => $this->generateTraceId()
+            ]);
+            return $this->errorResponse(500, '系统繁忙，请稍后重试');
         }
-        $nowIdentify = hash('sha256', $device);
-        $result = hash_equals($nowIdentify, $identify);
-        if ($result)
-        {
-            return $this->successResponse($trustDevice);
-        }
-        return $this->errorResponse(1006,"指纹验证错误,需核验邮箱") ;
     }
     /**
      * 检查用户权限
@@ -304,7 +325,8 @@ class UserModel extends Model
         try {
             // 从缓存获取用户权限
             $userPermissions = Cache::get('user_permissions_' . $userId);
-            if (!$userPermissions) {
+            if (!$userPermissions) 
+            {
                 // 从数据库获取用户权限
                 $userPermissions = Db::name('user_permissions')
                     ->where('user_id', $userId)
@@ -314,7 +336,7 @@ class UserModel extends Model
 
             return in_array($permission, $userPermissions);
         } catch (\Exception $e) {
-            Log::channel('user_action')->error('权限检查异常', [
+            Log::channel('user_action')->warning('权限检查异常', [
                 'user_id' => $userId,
                 'permission' => $permission,
                 'error' => $e->getMessage(),
@@ -330,13 +352,21 @@ class UserModel extends Model
      * @param string $stored 存储的密码
      * @return bool
      */
-    private function verifyPassword(string $input, string $stored): bool
+    private function verifyPassword( string $stored, string $input): bool
     {
         try {
+            Log::channel('user_action')->info("解密密码", [
+                'input' => $input,
+                'stored' => $stored,
+            ]);
             $this->loadEncryptionKeys(); 
             $decrypted = $this->sm2->doDecrypt($stored, $this->privateKey);
+            Log::channel('user_action')->info("输入密码 {$input}");
+            Log::channel('user_action')->info("解密数据库密码 {$decrypted}");
+ 
             return hash_equals($decrypted, $input);
-        } catch (\Exception $e) {
+        } catch (\Exception $e) 
+        {
             Log::channel('file')->error("SM2 解密失败: " . $e->getMessage());
             return false;
         }
