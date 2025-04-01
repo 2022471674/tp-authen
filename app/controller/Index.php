@@ -42,23 +42,11 @@ class Index extends BaseController
             ];
             
             $httpenv = [
-                'ua'  => $request->post('user-agent'),
+                'ua'         => $request->post('user_agent'),
                 'language'   => $request->post('language'),
                 'ip'         => $request->ip()
             ];
-
-            Log::channel('user_action')->info("登录请求", [
-                'data' => $data['__token__'],
-                'httpenv' => $httpenv['ua']
-            ]);
-
-            if (empty($httpenv['ua']))
-            {
-                Log::channel('user_action')->error("登录请求", [
-                    'data' => $data['__token__'],
-                    'httpenv' => $httpenv['ua']
-                ]);
-            }
+            Log::channel('user_action')->info("登录{$httpenv['ip']}");
             if (empty($data['__token__'])) 
             {
                 return json([
