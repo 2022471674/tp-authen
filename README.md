@@ -1,77 +1,43 @@
-![](https://www.thinkphp.cn/uploads/images/20230630/300c856765af4d8ae758c503185f8739.png)
+# 一·核心架构设计
 
-ThinkPHP 8
-===============
+autho:28.7/2022471674 name tp8-authenticatio/login-register
 
-## 特性
+环境要求：
 
-* 基于PHP`8.0+`重构
-* 升级`PSR`依赖
-* 依赖`think-orm`3.0+版本
-* 全新的`think-dumper`服务，支持远程调试
-* 支持`6.0`/`6.1`无缝升级
+- PHP >= 8.1 (开启 OpenSSL 扩展)
+- MySQL >= 5.7 (需启用 InnoDB)
+- Redis >= 6.0
+- Composer 包管理工具
 
-> ThinkPHP8的运行环境要求PHP8.0+
+## 1.双数据库协同
 
-现在开始，你可以使用官方提供的[ThinkChat](https://chat.topthink.com/)，让你在学习ThinkPHP的旅途中享受私人AI助理服务！
+> MySQL：存储用户基础信息（用户名、加密密码、设备指纹哈希值）和权限分级数据，采用字段级加密存储
+> Redis：缓存会话令牌（Token）、临时验证码、设备指纹校验状态，设置自动过期策略（建议会话令牌有效期2小时）
+> 优化点：通过Redis管道技术批量处理高频访问数据，降低MySQL查询压力
 
-![](https://www.topthink.com/uploads/assistant/20230630/4d1a3f0ad2958b49bb8189b7ef824cb0.png)
+## 2.国密算法继承
 
-ThinkPHP生态服务由[顶想云](https://www.topthink.com)（TOPThink Cloud）提供，为生态提供专业的开发者服务和价值之选。
+> 通过sm2非对称加密算法，保护数据库安全
 
-## 文档
+## 3.数据清洗
 
-[完全开发手册](https://doc.thinkphp.cn)
+> 采用前端加后端双重验证的形式，对用户数据进行质疑
 
+## 4.访问控制
 
-## 赞助
+> 通过浏览器数据，生成用户指纹，通过是否常通过允许的设备登录，分发相应权限
 
-全新的[赞助计划](https://www.thinkphp.cn/sponsor)可以让你通过我们的网站、手册、欢迎页及GIT仓库获得巨大曝光，同时提升企业的品牌声誉，也更好保障ThinkPHP的可持续发展。
+## 5.相应结果
 
-[![](https://www.thinkphp.cn/sponsor/special.svg)](https://www.thinkphp.cn/sponsor/special)
+> 记录详细的返回结果，告知用户错误点，获得更好的用户体验
 
-[![](https://www.thinkphp.cn/sponsor.svg)](https://www.thinkphp.cn/sponsor)
+## 6.后期拓展
 
-## 安装
+> 通过ip 限制用户次数，以及对错误的处理形式，cache，cookie的进一步使用，增加记住我的功能，优化日志记录形式，后期拓展ai分析，形成统计数据，实现用户的进一步管理
 
-~~~
-composer create-project topthink/think tp
-~~~
+#   
+二· 路线图
 
-启动服务
-
-~~~
-cd tp
-php think run
-~~~
-
-然后就可以在浏览器中访问
-
-~~~
-http://localhost:8000
-~~~
-
-如果需要更新框架使用
-~~~
-composer update topthink/framework
-~~~
-
-## 命名规范
-
-`ThinkPHP`遵循PSR-2命名规范和PSR-4自动加载规范。
-
-## 参与开发
-
-直接提交PR或者Issue即可
-
-## 版权信息
-
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
-
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
-
-版权所有Copyright © 2006-2024 by ThinkPHP (http://thinkphp.cn) All rights reserved。
-
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
-
-更多细节参阅 [LICENSE.txt](LICENSE.txt)
+- 集成 WebAuthn 无密码认证
+- 支持 OAuth 2.0 协议
+- 登录日志可视化分析面板

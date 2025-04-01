@@ -30,7 +30,8 @@ class UserRegisterEvent
             
             $result = $this->userRegisterLog->env($data ??'null');
             
-            if (!$result) {
+            if (!$result) 
+            {
                 Log::error("用户注册日志写入失败：" . json_encode($data));
             }
         } catch (\Exception $e) {
