@@ -35,8 +35,7 @@ autho:28.7/2022471674 name tp8-authenticatio/login-register
 
 > 通过ip 限制用户次数，以及对错误的处理形式，cache，cookie的进一步使用，增加记住我的功能，优化日志记录形式，后期拓展ai分析，形成统计数据，实现用户的进一步管理
 
-#   
-二· 路线图
+#   二· 路线图
 
 - 集成 WebAuthn 无密码认证
 - 支持 OAuth 2.0 协议
