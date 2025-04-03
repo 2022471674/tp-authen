@@ -281,64 +281,53 @@
         }
         
         // 表单提交事件
-        // 表单提交事件（修改后）
-document.querySelector('.login').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // 前端基础验证
-    const username = this.elements.username.value.trim();
-    const password = this.elements.password.value;
-    
-    if (!username || !password) {
-        showError('用户名和密码不能为空');
-        return;
-    }
+        document.querySelector('.login').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 前端基础验证
+            const username = this.elements.username.value.trim();
+            const password = this.elements.password.value;
+            
+            if (!username || !password) {
+                showError('用户名和密码不能为空');
+                return;
+            }
+        
+            showLoadingModal('安全验证中...');
+            
+            // 添加CSRF令牌到请求头
+            const headers = new Headers({
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': this.elements.__token__.value
+            });
+        
+            // 创建FormData对象并添加额外信息
+            const formData = new FormData(this);
+            formData.append('user_agent', navigator.userAgent);
+            formData.append('language', navigator.language.split('-')[0]); // 只获取主要语言代码
 
-    showLoadingModal('安全验证中...');
-    
-    // 创建FormData并添加额外参数
-    const formData = new FormData(this);
-    
-    // 添加用户代理（保留完整信息）
-    formData.append('user_agent', navigator.userAgent);
-    
-    // 添加完整语言标识（zh-CN）
-    const browserLanguage = navigator.language; // 获取完整语言标识（如zh-CN）
-    formData.append('language', browserLanguage.toLowerCase()); // 转换为zh-cn格式
-    
-    // 调试输出（正式环境可移除）
-    for (let [key, value] of formData.entries()) {
-        console.log('发送参数:', key, '=>', value);
-    }
-
-    // 添加CSRF令牌到请求头
-    const headers = new Headers({
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-TOKEN': this.elements.__token__.value
-    });
-
-    fetch(this.action, {
-        method: 'POST',
-        body: formData, // 使用修改后的FormData
-        headers: headers,
-        credentials: 'same-origin'
-    }).then(response => {
-        if (!response.ok) throw new Error(`HTTP错误! 状态码: ${response.status}`);
-        return response.json();
-    }).then(data => {
-        if (typeof data === 'object') {
-            handleLoginResponse(data);
-        } else {
-            throw new Error('无效的响应格式');
-        }
-    }).catch(error => {
-        console.error('请求错误:', error);
-        showError(error.message.includes('network') ? 
-            '网络连接异常，请检查网络' : 
-            '服务器响应异常，代码：' + error.message
-        );
-    });
-});
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: headers,
+                credentials: 'same-origin' // 携带Cookie
+            }).then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            }).then(data => {
+                if (typeof data === 'object') {
+                    handleLoginResponse(data);
+                } else {
+                    throw new Error('Invalid response format');
+                }
+            }).catch(error => {
+                console.error('Fetch error:', error);
+                showError(error.message.includes('network') ? 
+                    '网络连接异常，请检查网络' : 
+                    '服务器响应异常，代码：' + error.message
+                );
+            });
+        });
 
         // 添加忘记密码弹窗
         document.getElementById('showForgotPassword').addEventListener('click', function(e) {

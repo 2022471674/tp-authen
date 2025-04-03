@@ -98,9 +98,10 @@ class UserModel extends Model
     private function findidentify(string $username, string $trustDevice, array $identify): array
     {
         try {
-            if (hash_equals($identify, $trustDevice))
+            $result = hash_equals($identify, $trustDevice);
+            if ($result) 
             {
-                return true;
+                return true;// 对比成功返回true，直接执行登录，否则需要邮箱验证
             }
             $addDevice = $this->addDevice($username, $identify);
 
@@ -166,11 +167,11 @@ class UserModel extends Model
     {
         try {
             $user = $this->findByUsername($username);
-            Log::channel('user_action')->info("基础认证{$user['data']['id']}");
+            
             switch ($user['code']) {
                 case 200:
                     // 用户存在的时候验证密码
-                    if (!$this->verifyPassword($password, $user['data']['password'])) 
+                    if (!$this->verifyPassword($password, $user['password'])) 
                     {
                         Log::channel('user_action')->warning('密码错误', [
                             'username' => $username,
@@ -178,7 +179,6 @@ class UserModel extends Model
                         ]);
                         return $this->errorResponse(1002, '密码错误');
                     }
-                    Session::set("userid", $user['data']['id']);
                     return $this->successResponse($user['data']);
                     
                 case 1004:
@@ -269,37 +269,40 @@ class UserModel extends Model
 
     /**
      * 用户信任设备
-     * @param array $trustDevice 当前设备
+     * @param array $trustDevice 信任设备
      * @param string $userid 用户ID
+     * @param string $deviceKey 当前设备指纹
      * @return array
      */
-    public function usertrustDevice(array $trustDevice, string $userid)
+    public function usertrustDevice(array $trustDevice, string $userid, string $deviceKey)
     {
         try {
+            // 查询用户历史设备
             $devices = Db::name('user_history')
                 ->where('user_id', $userid)
                 ->select();
-            //cache
-            Log::channel('user_action')->info("设备验证{$devices[0]['trust_key']}");
-            //数据计算
-            $deviceKey = $trustDevice['ua'].$trustDevice['language'].$trustDevice['ip'];
-            $deviceKey = hash('sha256', $deviceKey);
 
-            Log::channel('user_action')->info("待验证设备{$deviceKey}");
-             //数据对比
-            $result = hash_equals($deviceKey, $devices[0]['trust_key']);
-            if (empty($devices) || !hash_equals($deviceKey, $devices[0]['trust_key'])) 
+            if (empty($devices)) 
             {
                 return $this->errorResponse(1006, "指纹验证错误,需核验邮箱");
             }
 
-                return $this->successResponse($devices);
-        
-                
+            // 检查当前设备是否在信任设备列表中
+            foreach ($devices as $device) 
+            {
+                if (hash_equals($deviceKey, $device['trust_key'])) 
+                {
+                    return $this->successResponse($device);
+                }
+            }
 
             return $this->errorResponse(1006, "指纹验证错误,需核验邮箱");
         } catch (\Exception $e) {
-            Log::channel('user_action')->info("设备验证失败{$e->getMessage()}");
+            Log::channel('user_action')->error('设备验证失败', [
+                'user_id' => $userid,
+                'error' => $e->getMessage(),
+                'trace_id' => $this->generateTraceId()
+            ]);
             return $this->errorResponse(500, '系统繁忙，请稍后重试');
         }
     }

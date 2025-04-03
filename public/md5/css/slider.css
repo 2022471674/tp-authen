@@ -1,0 +1,141 @@
+.fab-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  .fab-container {
+  z-index: 999; /* 确保悬浮菜单在最顶层 */
+  }
+/* 防止图标被隐藏 */
+  .fab-options li i {
+  display: inline-block !important;
+  font-size: 1.2rem;
+  color:rgb(1, 8, 15); /* 匹配主题色 */
+}
+
+.sidebar {
+position: fixed;
+left: 0;
+top: 0;
+height: 100vh;
+width: 250px;
+background: rgba(11, 22, 34, 0.95);
+backdrop-filter: blur(10px);
+z-index: 998;
+box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+border-right: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.sidebar-header {
+padding: 25px;
+border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header h2 {
+color: #4a90e2;
+margin: 10px 0 0;
+font-size: 1.4em;
+}
+
+.sidebar-nav {
+padding: 20px 0;
+}
+
+.sidebar-nav a {
+display: flex;
+align-items: center;
+padding: 15px 25px;
+color: #a0b4c5;
+text-decoration: none;
+transition: all 0.3s ease;
+position: relative;
+}
+
+.sidebar-nav a:hover {
+background: rgba(74, 144, 226, 0.1);
+color:rgb(12, 26, 41);
+}
+
+.sidebar-nav a.active {
+background: linear-gradient(90deg, rgba(74,144,226,0.2), transparent);
+color: #4a90e2;
+border-left: 3px solid #4a90e2;
+}
+
+.sidebar-nav i {
+width: 25px;
+margin-right: 15px;
+font-size: 1.1em;
+}
+
+.nav-divider {
+height: 1px;
+background: rgba(255,255,255,0.1);
+margin: 20px 25px;
+}
+
+/* 响应式处理 */
+@media (max-width: 768px) {
+.sidebar {
+    width: 60px;
+}
+.sidebar-header h2,
+.sidebar-nav span {
+    display: none;
+}
+.sidebar-nav i {
+    margin-right: 0;
+}
+}
+.sidebar {
+/* ...保持方案一的基础样式... */
+transform: translateX(-100%);
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.active {
+transform: translateX(0);
+}
+
+.sidebar-toggle {
+position: fixed;
+left: 20px;
+top: 20px;
+z-index: 999;
+color: #4a90e2;
+cursor: pointer;
+background: rgba(11, 22, 34, 0.9);
+padding: 10px;
+border-radius: 50%;
+}
+
+/* 子菜单样式 */
+.submenu {
+  padding-left: 25px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.submenu li a {
+  padding: 10px 20px;
+  font-size: 0.9em;
+}
+
+.submenu li i {
+  font-size: 0.8em;
+  margin-right: 8px;
+}
+
+.has-submenu.active .submenu {
+  max-height: 500px; /* 根据实际内容高度调整 */
+}
+
+.dropdown-icon {
+  float: right;
+  transition: transform 0.3s;
+}
+
+.has-submenu.active .dropdown-icon {
+  transform: rotate(180deg);
+}

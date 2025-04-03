@@ -3,282 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{$title|default='ThinkPHP8 站点'}</title>
+    <title>{$title|default='来辣(^///^)'}</title>
     <link rel="stylesheet" href="/static/css/nav.css">
     <link rel="stylesheet" href="/static/css/login-form.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/libs/node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/static/assets/css/register-body.css">
+
+    <script src="/node_modules/particles.js/particles.js"></script>
     <script src="/static/libs/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/static/js/mouse.js"></script> 
     <style>
-        .password-strength {
-            height: 5px;
-            margin-top: 5px;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        .strength-weak { background-color: #ff4d4d; width: 30%; }
-        .strength-medium { background-color: #ffd700; width: 60%; }
-        .strength-strong { background-color: #2ecc71; width: 100%; }
         
-        .input-group {
-            position: relative;
-            margin-bottom: 15px;
-        }
-        
-        .input-icon {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 10px 10px 10px 35px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        .input-field:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 0 5px rgba(74,144,226,0.3);
-        }
-        
-        .validation-message {
-            font-size: 12px;
-            color: #ff4d4d;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .requirements-list {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-            padding-left: 20px;
-            list-style: none;
-            display: none;
-        }
-        
-        .input-field:focus + label + .requirements-list {
-            display: block;
-        }
-        
-        .requirements-list li {
-            margin: 3px 0;
-            display: flex;
-            align-items: center;
-            color: #fff;
-            opacity: 0.7;
-        }
-        
-        .requirements-list li::before {
-            content: "✗";
-            margin-right: 8px;
-            color: #ff4d4d;
-            font-weight: bold;
-        }
-        
-        .requirements-list li.valid {
-            opacity: 1;
-        }
-        
-        .requirements-list li.valid::before {
-            content: "✓";
-            color: #2ecc71;
-        }
-        
-        .requirements-list li.valid span {
-            color: #2ecc71;
-        }
-        
-        .requirements-list li span {
-            color: #fff;
-        }
-        
-        .social-icons a {
-            transition: transform 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            transform: translateY(-3px);
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 30px;
-            color:#fff;
-        }
-
-        .form-header h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .form-header p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .input-group label {
-            position: absolute;
-            left: 35px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-
-        .input-field:focus + label,
-        .input-field:not(:placeholder-shown) + label {
-            top: -10px;
-            left: 10px;
-            font-size: 12px;
-            background: #fff;
-            padding: 0 5px;
-            color: #4a90e2;
-        }
-
-        .agreement-checkbox {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            color: #fff;
-        }
-
-        .agreement-checkbox input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .agreement-checkbox a {
-            color: #4a90e2;
-            text-decoration: none;
-        }
-
-        .agreement-checkbox a:hover {
-            text-decoration: underline;
-        }
-
-        .login-link {
-            display: block;
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
-            margin: 20px 0;
-            transition: color 0.3s ease;
-        }
-
-        .login-link:hover {
-            color: #4a90e2;
-        }
-
-        .social-login {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .social-login p {
-            color: #fff;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .social-login p::before,
-        .social-login p::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 45%;
-            height: 1px;
-            background: rgba(255,255,255,0.3);
-        }
-
-        .social-login p::before {
-            left: 0;
-        }
-
-        .social-login p::after {
-            right: 0;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icons a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(105, 116, 211, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            background: rgba(114, 143, 223, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #4a90e2;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .form-footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #fff;
-            font-size: 12px;
-        }
-
-        .form-footer a {
-            color: #4a90e2;
-            text-decoration: none;
-        }
-
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
-<body class="main-bg">
+<body>
+    <!-- 在背景容器最前面添加粒子层 -->
+    <div class="particle-layer">
+        <div id="particles-js"></div>
+    </div>
     <div class="background-container">
         <div class="gradient-layer"></div>
         <div class="particle-layer"></div>
@@ -287,8 +30,8 @@
 		<div class="screen__content">
                     <form class="login" method="post" action="{:url('register')}" id="registerForm">
                         <div class="form-header">
-                            <h1>欢迎注册</h1>
-                            <p>请填写以下信息完成注册</p>
+                            <h1>来辣(^///^)</h1>
+
                         </div>
 
 				<input type="hidden" name="__token__" value="{:token()}">
@@ -550,5 +293,85 @@
             loadingOverlay.style.display = 'none';
     });
 </script>
+<script>
+        // 在页面加载完成后初始化粒子特效
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { 
+                        value: 80,
+                        density: { enable: true, value_area: 800 }
+                    },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5 },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        out_mode: "out"
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    }
+                },
+                retina_detect: true
+            });
+
+            // 移动端优化
+            if(window.innerWidth < 768) {
+                window.pJSDom[0].pJS.particles.number.value = 40;
+            }
+        });
+    </script>
+
+    <script>
+    let originalTitle = document.title;
+
+    document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+        document.title = '"w(ﾟДﾟ)w 不要走！再看看嘛！';
+    } else {
+        document.title = originalTitle;
+    }
+});
+</script>
+<footer class="login-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>联系我们</h4>
+            <p>神火广场老九门武田F1 v3</p>
+            <p>2022471677@qq.com</p>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-section">
+            <h4>关注我们</h4>
+            <div class="footer-social">
+                <a href="#" class="fab fa-weixin"></a>
+                <a href="https://github.com/2022471674/tp-authen.git" class="fab fa-github"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 AuthSystem. All rights reserved. 
+            <a href="/privacy">隐私政策</a> | 
+            <a href="/terms">服务条款</a>
+        </p>
+    </div>
+</footer>
 </body>
 </html>

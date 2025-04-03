@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>
-			SecHub-28.7
+		♪(^∇^*)来辣
 		</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,8 +15,36 @@
 		<link rel="stylesheet" href="/static/assets/css/widgets.css">
 		<link rel="stylesheet" href="/static/assets/css/color.css">
 		<link rel="stylesheet" href="/static/assets/css/responsive.css">
+		<link rel="stylesheet" href="/static/css/enum.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		
+		<style>
+		#particles-js {
+			transition: opacity 0.5s ease;
+			background: linear-gradient(135deg,rgb(184, 198, 236) 0%,#55acee 100%);
+			}
+			@media (prefers-color-scheme: dark) {	
+    	body {
+        	background:rgb(231, 222, 222);
+    	}
+    	.screen {
+        	background: linear-gradient(90deg, #2D3748, #4A5568);
+        	box-shadow: 0px 0px 24px rgba(0,0,0,0.5);
+    	}
+		}
+		#particles-js:hover {
+    	opacity: 0.9;
+		}
+    	position: fixed;
+    	width: 100%;
+    	height: 100%;
+    	top: 0;
+    	left: 0;
+			z-index: -1; /* 确保在其他内容下方 */
+		</style>
 	</head>
 	<body>
+		
 		<div class="scroll-progress">
 		</div>
 		<!-- Preloader Start -->
@@ -353,6 +381,9 @@
 				</div>
 			</div>
 		</aside>
+		<!-- 粒子特效 -->
+		<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+
 		<div class="main-wrap">
 			<header class="main-header header-style primary-bg color-white header-style-2">
 				<div class="header-sticky primary-bg">
@@ -373,39 +404,17 @@
 							</i>
 						</button>
 					</div>
+					<!-- 顶部导航栏 -->
 					<div class="row no-gutters d-none d-lg-flex">
 						<div class="col-lg-4 pl-30">
-							<ul class="header-social-network d-inline-block list-inline">
-								<li class="list-inline-item">
-									<a class="social-icon facebook-icon text-xs-center" target="_blank" href="#">
-										<i class="ti-facebook">
-										</i>
-									</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="social-icon twitter-icon text-xs-center" target="_blank" href="#">
-										<i class="ti-twitter-alt">
-										</i>
-									</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="social-icon pinterest-icon text-xs-center" target="_blank" href="#">
-										<i class="ti-pinterest">
-										</i>
-									</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="social-icon instagram-icon text-xs-center" target="_blank" href="#">
-										<i class="ti-instagram">
-										</i>
-									</a>
-								</li>
-							</ul>
+									<p>
+										SecHub-28.7
+									</p>
 						</div>
 						<div class="col-lg-4 text-center">
 							<div class="logo-text">
 								<h1 class="color-white site-name">
-									<a href="index.html" class="d-inline-block mb-0 mt-15">
+									<a href="#" class="d-inline-block mb-0 mt-15">
 										SecHub-28.7 <p>{$userid|default=' '}</p>
 									</a>
 								</h1>
@@ -616,7 +625,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- end top news -->
+			<!--左侧热门 -->
 			<main class="position-relative row no-gutters">
 				<div class="col-1-5 col-sm-6 left-sidbar sticky-sidebar primary-sidebar order-2 order-lg-1">
 					<div class="sidebar-widget widget-latest-posts mb-50 mt-50">
@@ -728,238 +737,9 @@
 							</div>
 						</div>
 					</div>
-					<!--Recent Posts-->
-					<div class="sidebar-widget widget_categories mb-50 font-heading">
-						<div class="list-group panel">
-							<a href="category.html" class="list-group-item collapsed text-uppercase"
-							data-parent="#sidebar">
-								<span class="hidden-sm-down">
-									All Sections
-								</span>
-							</a>
-							<a href="#menu1" class="list-group-item collapsed" data-toggle="collapse"
-							data-parent="#sidebar" aria-expanded="false">
-								<span class="hidden-sm-down">
-									The World
-								</span>
-							</a>
-							<div class="collapse" id="menu1">
-								<a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">
-									U.S.
-								</a>
-								<div class="collapse" id="menu1sub1">
-									<a href="category.html" class="list-group-item" data-parent="#menu1sub1">
-										U.S.
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu1sub1">
-										Education
-									</a>
-									<a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse"
-									aria-expanded="false">
-										The Upshot
-									</a>
-									<div class="collapse" id="menu1sub1sub1">
-										<a href="category.html" class="list-group-item" data-parent="#menu1sub1sub1">
-											Daily Tracker
-										</a>
-										<a href="category.html" class="list-group-item" data-parent="#menu1sub1sub1">
-											Job Losses
-										</a>
-									</div>
-									<a href="category.html" class="list-group-item" data-parent="#menu1sub1">
-										Europe
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu1sub1">
-										Middle East
-									</a>
-								</div>
-								<a href="category.html" class="list-group-item" data-parent="#menu1">
-									England
-								</a>
-								<a href="category.html" class="list-group-item" data-parent="#menu1">
-									Australia
-								</a>
-								<a href="category.html" class="list-group-item" data-parent="#menu1">
-									Americas
-								</a>
-								<a href="category.html" class="list-group-item" data-parent="#menu1">
-									Asia Pacific
-								</a>
-								<a href="category.html" class="list-group-item" data-parent="#menu1">
-									Europe
-								</a>
-							</div>
-							<a href="category.html" class="list-group-item collapsed" data-parent="#sidebar">
-								<span class="hidden-sm-down">
-									Politics
-								</span>
-							</a>
-							<a href="#menu3" class="list-group-item collapsed" data-toggle="collapse"
-							data-parent="#sidebar" aria-expanded="false">
-								<span class="hidden-sm-down">
-									Business
-								</span>
-							</a>
-							<div class="collapse" id="menu3">
-								<a href="category.html" class="list-group-item" data-parent="#menu3">
-									Deal books
-								</a>
-								<a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">
-									Economy
-								</a>
-								<div class="collapse" id="menu3sub2">
-									<a href="category.html" class="list-group-item" data-parent="#menu3sub2">
-										By writer
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu3sub2">
-										Best seller
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu3sub2">
-										Deals
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu3sub2">
-										Magazine
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu3sub2">
-										Opinion
-									</a>
-									<a href="category.html" class="list-group-item" data-parent="#menu3sub2">
-										Books
-									</a>
-								</div>
-								<a href="category.html" class="list-group-item" data-parent="#menu3">
-									Media
-								</a>
-							</div>
-							<a href="category.html" class="list-group-item collapsed">
-								<span class="hidden-sm-down">
-									Technology
-								</span>
-							</a>
-							<a href="category.html" class="list-group-item collapsed">
-								<span class="hidden-sm-down">
-									Science
-								</span>
-							</a>
-							<a href="category.html" class="list-group-item collapsed">
-								<span class="hidden-sm-down">
-									Health
-								</span>
-							</a>
-							<a href="category.html" class="list-group-item collapsed">
-								<span class="hidden-sm-down">
-									Sport
-								</span>
-							</a>
-							<a href="category.html" class="list-group-item collapsed">
-								<span class="hidden-sm-down">
-									Travel
-								</span>
-							</a>
-						</div>
-					</div>
-					<!--Categories-->
-					<div class="sidebar-widget widget-latest-comments mb-50 wow fadeInUp animated">
-						<div class="widget-header widget-header-style-1 position-relative mb-30">
-							<h5 class="widget-title mt-5 mb-30">
-								Comments
-							</h5>
-						</div>
-						<div class="post-block-list post-module-6 mt-50">
-							<div class="post-module-6-item d-flex wow fadeInUp animated">
-								<span class="item-count vertical-align">
-									<i class="ti-comment">
-									</i>
-								</span>
-								<div class="alith_post_title_small">
-									<p class="font-medium mb-10">
-										<a href="single.html">
-											A writer is someone for whom writing is more difficult than it is for
-											other people.
-										</a>
-									</p>
-									<div class="entry-meta meta-1 font-small color-grey">
-										<span class="post-on">
-											On 15 April
-										</span>
-										<span class="hit-count has-dot">
-											by Johan
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="post-module-6-item d-flex wow fadeInUp animated">
-								<span class="item-count vertical-align">
-									<i class="ti-comment">
-									</i>
-								</span>
-								<div class="alith_post_title_small">
-									<p class="font-medium mb-10">
-										<a href="single.html">
-											Anybody who has survived his childhood has enough information about life
-											to last him the rest of his days.
-										</a>
-									</p>
-									<div class="entry-meta meta-1 font-small color-grey">
-										<span class="post-on">
-											On 05 May
-										</span>
-										<span class="hit-count has-dot">
-											by Emma
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="post-module-6-item d-flex wow fadeInUp animated">
-								<span class="item-count vertical-align">
-									<i class="ti-comment">
-									</i>
-								</span>
-								<div class="alith_post_title_small">
-									<p class="font-medium mb-10">
-										<a href="single.html">
-											A writer is someone for whom writing is more difficult than it is for
-											other people.
-										</a>
-									</p>
-									<div class="entry-meta meta-1 font-small color-grey">
-										<span class="post-on">
-											On 15 May
-										</span>
-										<span class="hit-count has-dot">
-											by Steven
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="post-module-6-item d-flex wow fadeInUp animated">
-								<span class="item-count vertical-align">
-									<i class="ti-comment">
-									</i>
-								</span>
-								<div class="alith_post_title_small">
-									<p class="font-medium mb-10">
-										<a href="single.html">
-											Alexe more gulped much garrulous a yikes earthworm wiped because goodness
-											bet mongoose that along accommodatingly tortoise indecisively admirable
-											but shark
-										</a>
-									</p>
-									<div class="entry-meta meta-1 font-small color-grey">
-										<span class="post-on">
-											On 17 May
-										</span>
-										<span class="hit-count has-dot">
-											by Mark
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--Recent Comment-->
+					
 				</div>
-				<!--Left sidebar-->
+				<!--正文起始-->
 				<div class="col-3-5 main-content pb-50 order-1 order-lg-2">
 					<div class="loop-list-1">
 						<article class="first-child">
@@ -976,7 +756,7 @@
 								</a>
 							</div>
 							<h2 class="post-title">
-								<a href="single.html">
+								<a href="<?= url('main/read') ?>">
 									How to Have a 5-Star Hotel Experience in Paris Without Booking a Room
 								</a>
 							</h2>
@@ -1244,428 +1024,37 @@
 						</a>
 					</div>
 					<!--About-->
-					<div class="sidebar-widget">
-						<div class="widget-header widget-header-style-1 position-relative mb-30 wow fadeInUp animated">
-							<h5 class="widget-title mt-5 mb-30">
-								Popular
-							</h5>
-						</div>
-						<div class="post-block-list post-module-1 post-module-5">
-							<ul class="list-post mt-50">
-								<li class="mb-30 wow fadeInUp animated">
-									<div class="d-flex">
-										<div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-											<a class="color-white" href="single.html">
-												<img src="/static/assets/imgs/thumb-3.jpg" alt="">
-											</a>
-										</div>
-										<div class="post-content media-body">
-											<h6 class="post-title mb-10 text-limit-2-row">
-												<a href="single.html">
-													Traveling Tends to Magnify All Human Emotions
-												</a>
-											</h6>
-											<div class="entry-meta meta-1 font-x-small color-grey">
-												<span class="post-on">
-													25 April
-												</span>
-												<span class="hit-count has-dot">
-													26k Views
-												</span>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li class="mb-30 wow fadeInUp animated">
-									<div class="d-flex">
-										<div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-											<a class="color-white" href="single.html">
-												<img src="/static/assets/imgs/thumb-4.jpg" alt="">
-											</a>
-										</div>
-										<div class="post-content media-body">
-											<h6 class="post-title mb-10 text-limit-2-row">
-												<a href="single.html">
-													The Luxury Of Traveling With Yacht
-												</a>
-											</h6>
-											<div class="entry-meta meta-1 font-x-small color-grey mt-10">
-												<span class="post-on">
-													25 April
-												</span>
-												<span class="hit-count has-dot">
-													37k Views
-												</span>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li class="mb-30 wow fadeInUp animated">
-									<div class="d-flex">
-										<div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-											<a class="color-white" href="single.html">
-												<img src="/static/assets/imgs/thumb-6.jpg" alt="">
-											</a>
-										</div>
-										<div class="post-content media-body">
-											<h6 class="post-title mb-10 text-limit-2-row">
-												<a href="single.html">
-													Last Minute Festive Packages From Superbreak
-												</a>
-											</h6>
-											<div class="entry-meta meta-1 font-x-small color-grey mt-10">
-												<span class="post-on">
-													25 April
-												</span>
-												<span class="hit-count has-dot">
-													54k Views
-												</span>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li class="mb-30 wow fadeInUp animated">
-									<div class="d-flex">
-										<div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-											<a class="color-white" href="single.html">
-												<img src="/static/assets/imgs/thumb-1.jpg" alt="">
-											</a>
-										</div>
-										<div class="post-content media-body">
-											<h6 class="post-title mb-10 text-limit-2-row">
-												<a href="single.html">
-													Last Minute Festive Packages From Superbreak
-												</a>
-											</h6>
-											<div class="entry-meta meta-1 font-x-small color-grey mt-10">
-												<span class="post-on">
-													25 April
-												</span>
-												<span class="hit-count has-dot">
-													54k Views
-												</span>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li class="mb-30 wow fadeInUp animated">
-									<div class="d-flex">
-										<div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-											<a class="color-white" href="single.html">
-												<img src="/static/assets/imgs/thumb-2.jpg" alt="">
-											</a>
-										</div>
-										<div class="post-content media-body">
-											<h6 class="post-title mb-10 text-limit-2-row">
-												<a href="single.html">
-													Last Minute Festive Packages From Superbreak
-												</a>
-											</h6>
-											<div class="entry-meta meta-1 font-x-small color-grey mt-10">
-												<span class="post-on">
-													25 April
-												</span>
-												<span class="hit-count has-dot">
-													54k Views
-												</span>
-											</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
+					<div class="fab-container">
+  					<div class="fab-main" id="fabMenu">
+    				<div class="fab-icon-holder">
+      					<i class="fas fa-plus"></i>
+    				</div>
+    					<ul class="fab-options">
+						<li data-tooltip="设置" onclick="location.href='<?= url('main/setting') ?>'">
+        						<i class="fas fa-cog"></i>
+      						</li>
+							<li data-tooltip="ctf工具" onclick="location.href='<?= url('main/md5_encode') ?>'">
+        						<i class="fas fa-key"></i>
+      						</li>
+      						<li data-tooltip="发布文章" onclick="location.href='<?= url('main/edit') ?>'">
+        						<i class="fas fa-pen"></i>
+      						</li>
+      						<li data-tooltip="提交BUG" onclick="showBugForm()">
+        						<i class="fas fa-bug"></i>
+      						</li>
+    					</ul>
+  						</div>
 					</div>
 					<!--End Popular post-->
-					<div class="sidebar-widget widget_newsletter wow fadeInUp animated">
-						<div class="widget-header widget-header-style-1 position-relative mb-30">
-							<h5 class="widget-title mt-5 mb-30">
-								Newsletter
-							</h5>
-						</div>
-						<div class="newsletter">
-							<p class="">
-								Heaven fruitful doesn't over les idays appear creeping
-							</p>
-							<form target="_blank" action="#" method="get" class="subscribe_form relative mail_part">
-								<div class="form-newsletter-cover">
-									<div class="form-newsletter">
-										<input type="email" name="EMAIL" placeholder="Email address" required="">
-										<button type="submit">
-											<span class="long-arrow long-arrow-right">
-											</span>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
+					
 					<!--End Newsletter-->
-					<div class="sidebar-widget widget_tagcloud wow fadeInUp animated">
-						<div class="widget-header widget-header-style-1 position-relative mb-30">
-							<h5 class="widget-title mt-5 mb-30">
-								Tagcloud
-							</h5>
-						</div>
-						<div class="tagcloud mt-50">
-							<a class="tag-cloud-link" href="category.html">
-								beautiful
-							</a>
-							<a class="tag-cloud-link" href="category.html">
-								New York
-							</a>
-							<a class="tag-cloud-link" href="category.html">
-								droll
-							</a>
-							<a class="tag-cloud-link" href="category.html">
-								intimate
-							</a>
-							<a class="tag-cloud-link" href="category.html">
-								loving
-							</a>
-							<a class="tag-cloud-link" href="category.html">
-								travel
-							</a>
-							<a class="tag-cloud-link" href="category.html">
-								fighting
-							</a>
-						</div>
-					</div>
+					
 					<!--End Tagcloud-->
-					<div class="sidebar-widget widget_contact wow fadeInUp animated">
-						<div class="widget-header widget-header-style-1 position-relative mb-30">
-							<h5 class="widget-title mt-5 mb-30">
-								Contact
-							</h5>
-						</div>
-						<div class="textwidget">
-							<p>
-								<strong>
-									Address
-								</strong>
-								<br>
-								123 Main Street
-								<br>
-								New York,NY 10001
-							</p>
-							<p>
-								<strong>
-									Hours
-								</strong>
-								<br>
-								Monday—Friday:9:00AM–5:00PM
-								<br>
-								Saturday &amp;Sunday:11:00AM–3:00PM
-							</p>
-						</div>
-					</div>
-				</div>
+				
 				<!--End right sidebar-->
 			</main>
 			<footer>
-				<div class="bottom row no-gutters">
-					<div class="col-1-5">
-					</div>
-					<div class="col-4-5">
-						<div class="divider-1">
-						</div>
-						<div class="pl-lg-110">
-							<div class="row no-gutters">
-								<div class="col-lg-4 col-md-6">
-									<div class="sidebar-widget widget-archive wow fadeInUp animated">
-										<div class="widget-header widget-header-style-1 position-relative mb-30">
-											<h5 class="widget-title mt-5 mb-30">
-												Archives
-											</h5>
-										</div>
-										<ul class="mt-50">
-											<li>
-												<a href="category.html">
-													January 2020
-												</a>
-												&nbsp;(11)
-											</li>
-											<li>
-												<a href="category.html">
-													February 2020
-												</a>
-												&nbsp;(10)
-											</li>
-											<li>
-												<a href="category.html">
-													March 2020
-												</a>
-												&nbsp;(28)
-											</li>
-											<li>
-												<a href="category.html">
-													April 2020
-												</a>
-												&nbsp;(20)
-											</li>
-											<li>
-												<a href="category.html">
-													May 2020
-												</a>
-												&nbsp;(52)
-											</li>
-											<li>
-												<a href="category.html">
-													June 2020
-												</a>
-												&nbsp;(23)
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-6">
-									<div class="sidebar-widget widget-twitter wow fadeInUp animated">
-										<div class="widget-header widget-header-style-1 position-relative mb-30">
-											<h5 class="widget-title mt-5 mb-30">
-												Latest Tweets
-											</h5>
-										</div>
-										<ul class="twitter-widget-inner mt-50">
-											<li class="twitter-content">
-												<span class="twitter-icon">
-													<i class="ti-twitter-alt">
-													</i>
-												</span>
-												<p>
-													Buy Ultranews - HTML template on
-													<a target="_blank" href="https://themeforest.net/item/ultranews-magazine-bootstrap-4-template/26563121"
-													class="twitter-link">
-														@ThemeForest
-													</a>
-													<span class="meta_date">
-														Apr 9,2020
-													</span>
-												</p>
-											</li>
-											<li class="twitter-content">
-												<span class="twitter-icon">
-													<i class="ti-twitter-alt">
-													</i>
-												</span>
-												<p>
-													EmBe — All You Need to build a WordPress Magazine,News portal or Blog
-													site
-													<a target="_blank" href="https://themeforest.net/item/embe-flexible-magazine-wordpress-theme/24531103"
-													class="twitter-link">
-														@ThemeForest
-													</a>
-													<span class="meta_date">
-														Jan 31,2020
-													</span>
-												</p>
-											</li>
-											<li class="twitter-content">
-												<span class="twitter-icon">
-													<i class="ti-twitter-alt">
-													</i>
-												</span>
-												<p>
-													Hewo - Modern Newspaper HTML Template
-													<a target="_blank" href="https://themeforest.net/item/hewo-modern-newspaper-html-template/22069158"
-													class="twitter-link">
-														@ThemeForest
-													</a>
-													<span class="meta_date">
-														Jan 31,2020
-													</span>
-												</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="sidebar-widget widget_contact wow fadeInUp animated">
-										<div class="widget-header widget-header-style-1 position-relative mb-30">
-											<h5 class="widget-title mt-5 mb-30">
-												Instagram
-											</h5>
-										</div>
-										<ul class="alith-instagram-grid-widget alith-clr alith-row alith-gap-10">
-											<li class="wow fadeInUp alith-col-nr alith-clr alith-col-3 animated">
-												<a class="" target="_blank" href="#">
-													<img class="border-radius-5" title="" alt="" src="/static/assets/imgs/thumb-1.jpg">
-												</a>
-											</li>
-											<li class="wow fadeInUp alith-col-nr alith-clr alith-col-3 animated">
-												<a class="" target="_blank" href="#">
-													<img class="border-radius-5" title="" alt="" src="/static/assets/imgs/thumb-2.jpg">
-												</a>
-											</li>
-											<li class="wow fadeInUp alith-col-nr alith-clr alith-col-3 animated">
-												<a class="" target="_blank" href="#">
-													<img class="border-radius-5" title="" alt="" src="/static/assets/imgs/thumb-3.jpg">
-												</a>
-											</li>
-											<li class="wow fadeInUp alith-col-nr alith-clr alith-col-3 animated">
-												<a class="" target="_blank" href="#">
-													<img class="border-radius-5" title="" alt="" src="/static/assets/imgs/thumb-4.jpg">
-												</a>
-											</li>
-											<li class="wow fadeInUp alith-col-nr alith-clr alith-col-3 animated">
-												<a class="" target="_blank" href="#">
-													<img class="border-radius-5" title="" alt="" src="/static/assets/imgs/thumb-5.jpg">
-												</a>
-											</li>
-											<li class="wow fadeInUp alith-col-nr alith-clr alith-col-3 animated">
-												<a class="" target="_blank" href="#">
-													<img class="border-radius-5" title="" alt="" src="/static/assets/imgs/thumb-6.jpg">
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="pl-md-50">
-								<div class="row no-gutters">
-									<div class="divider-1">
-									</div>
-									<!-- Footer Start -->
-									<div class="footer-bottom-area">
-										<div class="pt-30 pb-30">
-											<div class="row no-gutters align-items-center justify-content-between wow fadeInUp animated">
-												<div class="col-lg-6 col-md-12">
-													<div class="footer-copy-right">
-														<p class="font-medium">
-															© 2020,WritePress | All rights reserved | Design by
-															<a href="http://www.bootstraphtml.com" target="_blank">
-																AliThemes
-															</a>
-														</p>
-													</div>
-												</div>
-												<div class="col-lg-6  col-md-12">
-													<div class="footer-menu float-lg-right mt-lg-0 mt-3">
-														<ul class="font-medium">
-															<li>
-																<a href="#">
-																	Terms of use
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Privacy Policy
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Contact
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 			</footer>
 		</div>
 		<!-- Main Wrap End-->
@@ -1708,11 +1097,122 @@
 		</script>
 		<script src="/static/assets/js/vendor/jquery.theia.sticky.js">
 		</script>
+		<script src="/static/js/mouse.js"></script>
 		<!-- UltraNews JS -->
 		<script src="/static/assets/js/main.js">
 		</script>
-	</body>
+		<script src="/node_modules/particles.js/particles.js"></script>
 
+	</body>
+	<script>
+	let originalTitle = document.title;
+
+	document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+        document.title = '"w(ﾟДﾟ)w 不要走！再看看嘛！';
+    } else {
+        document.title = originalTitle;
+    }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    particlesJS('particles-js', {
+        particles: {
+            number: { 
+                value: 80,  // 桌面端粒子数
+                density: { enable: true, value_area: 800 }
+            },
+            color: { value: "#4a90e2" },  // 匹配主题蓝色
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: 3, random: true },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                out_mode: "out"
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "grab" },  // 悬停抓取效果
+                onclick: { enable: true, mode: "push" },   // 点击生成新粒子
+                resize: true
+            }
+        },
+        retina_detect: true
+    });
+    
+    // 移动端优化
+    if(window.innerWidth < 768) {
+        window.pJSDom[0].pJS.particles.number.value = 40;
+    }
+});
+</script>
+<script>
+// 拖拽功能
+let isDragging = false;
+let currentX = 0, currentY = 0;
+const fab = document.getElementById('fabMenu');
+
+fab.addEventListener('mousedown', dragStart);
+document.addEventListener('mousemove', drag);
+document.addEventListener('mouseup', dragEnd);
+
+function dragStart(e) {
+  isDragging = true;
+  currentX = e.clientX - fab.offsetLeft;
+  currentY = e.clientY - fab.offsetTop;
+}
+
+function drag(e) {
+  if (isDragging) {
+    e.preventDefault();
+    const x = e.clientX - currentX;
+    const y = e.clientY - currentY;
+    
+    // 限制在可视区域内
+    const maxX = window.innerWidth - fab.offsetWidth;
+    const maxY = window.innerHeight - fab.offsetHeight;
+    
+    fab.style.left = `${Math.min(Math.max(x, 0), maxX)}px`;
+    fab.style.top = `${Math.min(Math.max(y, 0), maxY)}px`;
+  }
+}
+
+function dragEnd() {
+  isDragging = false;
+}
+
+// 折叠菜单切换
+fab.addEventListener('click', function(e) {
+  if (!isDragging) {
+    this.classList.toggle('open');
+  }
+});
+
+// 显示BUG反馈表单
+function showBugForm() {
+  const form = `
+  <div class="bug-form">
+    <textarea placeholder="请详细描述遇到的问题"></textarea>
+    <button onclick="submitBug()">提交</button>
+  </div>
+  `;
+  // 这里需要实现表单弹出逻辑
+  alert('BUG提交功能需要后端支持');
+}
+</script>
 </html>
 <link rel="stylesheet" href="/static/assets/css/style.css">
 <link rel="stylesheet" href="/static/assets/css/widgets.css">
