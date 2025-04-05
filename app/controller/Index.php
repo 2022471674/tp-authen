@@ -42,11 +42,11 @@ class Index extends BaseController
             ];
             
             $httpenv = [
-                'ua'  => $request->post('user-agent'),
+                'ua'         => $request->post('user_agent'),
                 'language'   => $request->post('language'),
                 'ip'         => $request->ip()
             ];
-
+            Log::channel('user_action')->info("登录{$httpenv['ip']}");
             if (empty($data['__token__'])) 
             {
                 return json([
@@ -55,7 +55,7 @@ class Index extends BaseController
                     'redirect_url' => (string)url('api/login', [], true, true)
                 ]);
             }
-            //传入用户名密码环境(脏数据)
+            
             $result = $this->authService->login($data['username'], $data['password'], $httpenv);
             
             ob_clean();
@@ -71,4 +71,9 @@ class Index extends BaseController
         }
     }
     
+
+    public function loginout()
+    {
+        $this->authService->loginout();
+    }
 }

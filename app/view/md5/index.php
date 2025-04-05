@@ -145,64 +145,7 @@
 					</div>
   </body>
 
-  <script src="/node_modules/particles.js/particles.js"></script>
-  <script src="/md5/js/md5.js"></script>
 
-  <script>
-	let originalTitle = document.title;
-
-	document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') {
-        document.title = '"w(ﾟДﾟ)w 不要走！再看看嘛！';
-    } else {
-        document.title = originalTitle;
-    }
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    particlesJS('particles-js', {
-        particles: {
-            number: { 
-                value: 80,  // 桌面端粒子数
-                density: { enable: true, value_area: 800 }
-            },
-            color: { value: "#4a90e2" },  // 匹配主题蓝色
-            shape: { type: "circle" },
-            opacity: { value: 0.5 },
-            size: { value: 3, random: true },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: "#ffffff",
-                opacity: 0.4,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 2,
-                direction: "none",
-                out_mode: "out"
-            }
-        },
-        interactivity: {
-            detect_on: "canvas",
-            events: {
-                onhover: { enable: true, mode: "grab" },  // 悬停抓取效果
-                onclick: { enable: true, mode: "push" },   // 点击生成新粒子
-                resize: true
-            }
-        },
-        retina_detect: true
-    });
-    
-    // 移动端优化
-    if(window.innerWidth < 768) {
-        window.pJSDom[0].pJS.particles.number.value = 40;
-    }
-});
-</script>
 
 <script>
 // 拖拽功能
@@ -214,13 +157,15 @@ fab.addEventListener('mousedown', dragStart);
 document.addEventListener('mousemove', drag);
 document.addEventListener('mouseup', dragEnd);
 
-function dragStart(e) {
+function dragStart(e) 
+{
   isDragging = true;
   currentX = e.clientX - fab.offsetLeft;
   currentY = e.clientY - fab.offsetTop;
 }
 
-function drag(e) {
+function drag(e) 
+{
   if (isDragging) {
     e.preventDefault();
     const x = e.clientX - currentX;
@@ -235,13 +180,16 @@ function drag(e) {
   }
 }
 
-function dragEnd() {
+function dragEnd() 
+{
   isDragging = false;
 }
 
 // 折叠菜单切换
-fab.addEventListener('click', function(e) {
-  if (!isDragging) {
+fab.addEventListener('click', function(e) 
+{
+  if (!isDragging) 
+  {
     this.classList.toggle('open');
   }
 });
@@ -279,7 +227,8 @@ document.querySelectorAll('.has-submenu > a').forEach(item => {
 });
 
 // 点击外部关闭菜单
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function(e) 
+{
     if (!e.target.closest('.has-submenu')) {
         document.querySelectorAll('.has-submenu').forEach(item => {
             item.classList.remove('active');
@@ -288,5 +237,8 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
+<script src="/static/js/main-title.js"></script>
+<script src="/node_modules/particles.js/particles.js"></script>
+<script src="/md5/js/md5.js"></script>
+<script src="/static/js/body.js"></script>
 </html>

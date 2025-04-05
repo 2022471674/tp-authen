@@ -74,23 +74,23 @@
 							<div class="col-lg-3 col-md-6 mb-50">
 								<div class="widget-header widget-header-style-1 position-relative">
 									<h4 class="widget-title mt-5 mb-30">
-										Home
+										主页
 									</h4>
 								</div>
 								<ul class="mt-50">
 									<li>
 										<a href="index.html">
-											Home default
+											首页
 										</a>
 									</li>
 									<li>
 										<a href="home-2.html">
-											Home page two
+											分类
 										</a>
 									</li>
 									<li>
 										<a href="home-3.html">
-											Home page three
+											人工智能
 										</a>
 									</li>
 								</ul>
@@ -98,28 +98,28 @@
 							<div class="col-lg-3 col-md-6 mb-50">
 								<div class="widget-header widget-header-style-1 position-relative">
 									<h4 class="widget-title mt-5 mb-30">
-										Archive
+										工具
 									</h4>
 								</div>
 								<ul class="mt-50">
 									<li>
 										<a href="category.html">
-											Default
+											CTF编码工具
 										</a>
 									</li>
 									<li>
 										<a href="category-list.html">
-											List layout
+											字典生成
 										</a>
 									</li>
 									<li>
 										<a href="category-grid.html">
-											Grid layout
+											操作手册
 										</a>
 									</li>
 									<li>
 										<a href="category-big.html">
-											Big thumbnail
+											漏洞库
 										</a>
 									</li>
 								</ul>
@@ -427,9 +427,8 @@
 								<nav>
 									<ul id="navigation" class="main-menu float-lg-right">
 										<li class="menu-item-has-children">
-											<a href="index.html">
-												主页
-											</a>
+                                            <a href="{$action}" class="auth-btn">{$name}</a>
+                                        
 											<ul class="sub-menu">
 												<li>
 													<a href="index.html">
@@ -446,11 +445,15 @@
 														博客管理
 													</a>
 												</li>
+
+												<li>
+													<a href="{$action}" class="auth-btn">
+														退出登录
+													</a>
+												</li>
 											</ul>
 										</li>
-										<li>
-                                            <a href="{$action}" class="auth-btn">{$name}</a>
-                                        </li>
+										
 										<li>
 											<a href="contact.html">
 												联系我们
@@ -1045,13 +1048,6 @@
     					</ul>
   						</div>
 					</div>
-					<!--End Popular post-->
-					
-					<!--End Newsletter-->
-					
-					<!--End Tagcloud-->
-				
-				<!--End right sidebar-->
 			</main>
 			<footer>
 				
@@ -1104,17 +1100,6 @@
 		<script src="/node_modules/particles.js/particles.js"></script>
 
 	</body>
-	<script>
-	let originalTitle = document.title;
-
-	document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') {
-        document.title = '"w(ﾟДﾟ)w 不要走！再看看嘛！';
-    } else {
-        document.title = originalTitle;
-    }
-});
-</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1202,7 +1187,8 @@ fab.addEventListener('click', function(e) {
 });
 
 // 显示BUG反馈表单
-function showBugForm() {
+function showBugForm() 
+{
   const form = `
   <div class="bug-form">
     <textarea placeholder="请详细描述遇到的问题"></textarea>
@@ -1214,7 +1200,3 @@ function showBugForm() {
 }
 </script>
 </html>
-<link rel="stylesheet" href="/static/assets/css/style.css">
-<link rel="stylesheet" href="/static/assets/css/widgets.css">
-<link rel="stylesheet" href="/static/assets/css/color.css">
-<link rel="stylesheet" href="/static/assets/css/responsive.css">

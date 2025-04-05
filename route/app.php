@@ -20,4 +20,4 @@ Route::get('login','index/index'); //登录页
 Route::post('logout', 'user/logout')->name('logout');// 登出路由
 Route::get('api/email', 'home/index');
 
-  
+Route::post('api/article/save', 'article/save');

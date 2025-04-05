@@ -17,9 +17,9 @@ class Main
             $action = url('api/login');
         }else{
             $userid = md5(Session::get("userid"));
-            $user = Session::get("user");
+            $user = Session::get("username");
             $name = isset($user) ? "欢迎"." " .htmlspecialchars($user) : "欢迎用户";
-            $action = url('logout'); 
+            $action = url('api/loginout'); 
         }
         return View::fetch('home/index', [
             "userid" => $userid,
