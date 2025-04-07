@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>
-		♪(^∇^*)来辣
-		</title>
+        ♪(^∇^*)来辣
+        </title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="manifest" href="site.webmanifest">
@@ -84,7 +84,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="home-2.html">
+										<a href='<?= url('main/category') ?>'>
 											分类
 										</a>
 									</li>
@@ -1036,7 +1036,7 @@
 						<li data-tooltip="设置" onclick="location.href='<?= url('main/setting') ?>'">
         						<i class="fas fa-cog"></i>
       						</li>
-							<li data-tooltip="ctf工具" onclick="location.href='<?= url('main/md5_encode') ?>'">
+							<li data-tooltip="ctf工具" onclick="location.href='<?= url('main/tools_encrypt') ?>'">
         						<i class="fas fa-key"></i>
       						</li>
       						<li data-tooltip="发布文章" onclick="location.href='<?= url('main/edit') ?>'">
@@ -1055,49 +1055,29 @@
 		</div>
 		<!-- Main Wrap End-->
 		<!-- Vendor JS-->
-		<script src="/static/assets/js/vendor/modernizr-3.5.0.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery-1.12.4.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/popper.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/bootstrap.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.slicknav.js">
-		</script>
-		<script src="/static/assets/js/vendor/owl.carousel.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/slick.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/wow.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/animated.headline.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.magnific-popup.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.ticker.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.vticker-min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.scrollUp.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.nice-select.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.sticky.js">
-		</script>
-		<script src="/static/assets/js/vendor/perfect-scrollbar.js">
-		</script>
-		<script src="/static/assets/js/vendor/waypoints.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.counterup.min.js">
-		</script>
-		<script src="/static/assets/js/vendor/jquery.theia.sticky.js">
-		</script>
+		<script src="/static/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		<script src="/static/assets/js/vendor/jquery-1.12.4.min.js"></script>
+		<script src="/static/assets/js/vendor/popper.min.js"></script>
+		<script src="/static/assets/js/vendor/bootstrap.min.js"></script>
+		<script src="/static/assets/js/vendor/jquery.slicknav.js"></script>
+		<script src="/static/assets/js/vendor/owl.carousel.min.js"></script>
+		<script src="/static/assets/js/vendor/slick.min.js"></script>
+		<script src="/static/assets/js/vendor/wow.min.js"></script>
+		<script src="/static/assets/js/vendor/animated.headline.js"></script>
+		<script src="/static/assets/js/vendor/jquery.magnific-popup.js"></script>
+		<script src="/static/assets/js/vendor/jquery.ticker.js"></script>
+		<script src="/static/assets/js/vendor/jquery.vticker-min.js"></script>
+		<script src="/static/assets/js/vendor/jquery.scrollUp.min.js"></script>
+		<script src="/static/assets/js/vendor/jquery.nice-select.min.js"></script>
+		<script src="/static/assets/js/vendor/jquery.sticky.js"></script>
+		<script src="/static/assets/js/vendor/perfect-scrollbar.js"></script>
+		<script src="/static/assets/js/vendor/waypoints.min.js"></script>
+		<script src="/static/assets/js/vendor/jquery.counterup.min.js"></script>
+		<script src="/static/assets/js/vendor/jquery.theia.sticky.js"></script>
 		<script src="/static/js/mouse.js"></script>
-		<!-- UltraNews JS -->
-		<script src="/static/assets/js/main.js">
-		</script>
+		<script src="/static/assets/js/main.js"></script>
 		<script src="/node_modules/particles.js/particles.js"></script>
+		<script src="/static/js/main-title.js"></script>
 
 	</body>
 

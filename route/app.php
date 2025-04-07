@@ -19,5 +19,6 @@ Route::get('/', 'main/login'); //首页
 Route::get('login','index/index'); //登录页
 Route::post('logout', 'user/logout')->name('logout');// 登出路由
 Route::get('api/email', 'home/index');
-
-Route::post('api/article/save', 'article/save');
+Route::post('api/article/save','article/save');
+Route::post('api/upload/image', 'imgdump/ArticleImg/index');
+Route::post('/api/md5/encrypt', 'main/md5_encode');

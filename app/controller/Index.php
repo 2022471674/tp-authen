@@ -24,13 +24,7 @@ class Index extends BaseController
     }
     
     /**
-     * 收录分支
-     * @username
-     * @password
-     * @ip
-     * @__token__
-     * @user_agent
-     * @language
+     * 
      */
     public function login(Request $request) 
     { 

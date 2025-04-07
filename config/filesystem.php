@@ -11,7 +11,7 @@ return [
             // 磁盘类型
             'type'          => 'local',
             // 磁盘路径
-            'root'          => app()->getRuntimePath() . 'storage',
+            'root'          =>  'public/storage',
         ],
         'public'            => [
             // 磁盘类型

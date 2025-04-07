@@ -13,148 +13,14 @@
     <script src="/static/libs/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/static/js/mouse.js"></script>
     <script src="/static/js/login-href.js"></script>
+    <script src="/node_modules/particles.js/particles.js"></script>
+    <script src="/static/js/body.js"></script>
     <style>
-        .screen {
-            height: 650px;  /* 增加整体高度 */
-        }
-
-        .screen__content {
-            padding-top: 120px;  /* 增加顶部内边距 */
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 25px;  /* 增加底部间距 */
-            color: #fff;
-        }
-
-        .form-header h1 {
-            font-size: 24px;  /* 稍微增大标题字号 */
-            margin-bottom: 8px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;  /* 增加输入框之间的间距 */
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 12px;  /* 稍微调整图标位置 */
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 12px 12px 12px 40px;  /* 增加输入框内边距 */
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 15px;  /* 增大输入框字号 */
-        }
-
-        .input-field:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 0 5px rgba(74,144,226,0.3);
-            outline: none;
-        }
-
-        .login-link {
-            display: block;
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
-            margin: 20px 0;  /* 增加链接上下间距 */
-            transition: color 0.3s ease;
-            font-size: 15px;  /* 增大链接字号 */
-        }
-
-        .login-link:hover {
-            color: #4a90e2;
-        }
-
-        .social-login {
-            margin-top: 30px;  /* 增加社交登录区域的上边距 */
-            text-align: center;
-        }
-
-        .social-login p {
-            color: #fff;
-            margin-bottom: 20px;  /* 增加文字底部间距 */
-            position: relative;
-            font-size: 15px;  /* 增大文字字号 */
-        }
-
-        .social-login p::before,
-        .social-login p::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 45%;
-            height: 1px;
-            background: rgba(255,255,255,0.3);
-        }
-
-        .social-login p::before {
-            left: 0;
-        }
-
-        .social-login p::after {
-            right: 0;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;  /* 增加图标之间的间距 */
-        }
-
-        .social-icons a {
-            width: 45px;  /* 增大图标尺寸 */
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 20px;  /* 增大图标字号 */
-        }
-
-        .social-icons a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
-        }
-
-        .forgot-password {
-            text-align: center;
-            margin-top: 25px;  /* 增加忘记密码链接的上边距 */
-        }
-
-        .forgot-password a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;  /* 增大链接字号 */
-            transition: color 0.3s ease;
-        }
-
-        .forgot-password a:hover {
-            color: #4a90e2;
-        }
-
-        .button.login__submit {
-            margin-top: 15px;  /* 增加按钮的上边距 */
-            padding: 12px 30px;  /* 增加按钮内边距 */
-            font-size: 16px;  /* 增大按钮文字字号 */
-        }
+       
     </style>
 </head>
 <body class="main-bg">
+<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
     <div class="background-container">
         <div class="gradient-layer"></div>
         <div class="particle-layer"></div>
@@ -353,5 +219,29 @@
             });
         });
     </script>
+    <footer class="login-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>联系我们</h4>
+            <p>神火广场老九门武田F1 v3</p>
+            <p>2022471677@qq.com</p>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-section">
+            <h4>关注我们</h4>
+            <div class="footer-social">
+                <a href="#" class="fab fa-weixin"></a>
+                <a href="https://github.com/2022471674/tp-authen.git" class="fab fa-github"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 AuthSystem. All rights reserved. 
+            <a href="/privacy">隐私政策</a> | 
+            <a href="/terms">服务条款</a>
+        </p>
+    </div>
+</footer>
 </body>
 </html>
