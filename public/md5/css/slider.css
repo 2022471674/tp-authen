@@ -45,7 +45,7 @@ i {
     position: relative;
 }
 #navbarSupportedContent>ul>li.active>a{
-	color: #5161ce;
+	color: #3f4c9f;
 	background-color: transparent;
 	transition: all 0.7s;
 }

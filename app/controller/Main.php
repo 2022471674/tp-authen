@@ -5,6 +5,8 @@ use think\facade\{View, Session,Log};
 use app\event\getAllCategories;
 use app\model\tools\Md5CryptModel;
 use think\facade\Request;
+use app\model\tools\Sm2CryptModel;
+
 class Main
 {
     public $categories;
@@ -93,6 +95,37 @@ class Main
             'result' => $result
         ]);
     }
+
+    /**
+     * sm2模板渲染
+     */
+    function sm2_encrypt_view()
+    {
+        return View::fetch('sm2/index');
+    }
+    /**
+     * sm2算法生成
+     */
+    function sm2_encrypt(Request $request)
+    {
+        $data = Request::post();
+        if (empty($data['action'])||empty($data['input']))
+        {
+            return json([
+                'code' => 404,
+                'msg' => '请输入加密类型',
+                'result' => ''
+            ]);
+        }
+        $result = (new Sm2CryptModel())->sm2DoEncrypt($data['input'],$data['public_key']);
+
+        return json([
+            'code' => 200,
+            'msg' => '加密成功',
+            'result' => $result
+        ]);
+    }
+
 
     /**
      * 用户配置中心

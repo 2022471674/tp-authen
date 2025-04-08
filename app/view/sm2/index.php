@@ -10,14 +10,12 @@
     <link rel="stylesheet" href="/static/css/MD5.css">
     <link rel="stylesheet" href="/md5/css/slider.css">
     <link rel="stylesheet" href="/md5/css/footer.css">
-
     <script src="/node_modules/particles.js/particles.js"></script>
     <script src="/static/assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="/md5/js/slider.js"></script>
   </head>
   <body>
   <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
         </button>
@@ -25,10 +23,10 @@
             <ul class="navbar-nav ml-auto">
                 <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= url('main/sm2_encrypt_view') ?>"><i class="fas fa-tachometer-alt"></i>sm2加密</a>
+                    <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i>sm2加密</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Base(16)(32)(64)(85)(91)(92)加/解密</a>
+                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>type7加密</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone">Rot13加密</i></a>
@@ -37,7 +35,7 @@
                     <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt">url编码/解码</i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="far fa-chart-bar"></i>md5(16)(64)加/解密</a>
+                    <a class="nav-link" href="<?= url('main/tools_encrypt') ?>"><i class="far fa-chart-bar"></i>md5(16)(32)加/解密</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>更多工具</a>
@@ -48,26 +46,27 @@
 
     <div class="container">
       <div class="tool-section">
-        <h3>MD5 加密工具</h3>
-        <em>注意，md5加密是不可逆的，只有通过碰撞的方式进行解密，<br>
-        但是在存在漏洞的情况下，可以进行碰撞<br>
-        碰撞的原理是：<br>
-        1. 找到一个碰撞的种子<br>
-        2. 使用种子生成两个不同的消息<br>
-        3. 对两个消息进行md5加密，得到两个相同的md5值<br>
-        4. 对"==" 或者"==="的特定要求的碰撞<br>
-        </em>
+        <h2>SM2 加密</h2>
+        <div class="sm2-intro">
+          <p>SM2是国家密码管理局于2010年12月发布的椭圆曲线公钥密码算法。它是一种非对称加密算法，基于椭圆曲线密码（ECC）构建，具有以下特点：</p>
+          <ul>
+            <li>密钥长度：256位</li>
+            <li>安全性：与RSA 2048位相当</li>
+            <li>运算速度：比RSA更快</li>
+            <li>适用场景：数字签名、密钥交换、数据加密等</li>
+          </ul>
+          <p>SM2已成为中国商用密码的重要组成部分，广泛应用于金融、电子政务等领域。</p>
+          <strong>注意：</strong>
+          <p>公钥和私钥需要使用16进制格式</p>
+        </div>
         <div class="input-group">
           <input type="text" id="input" placeholder="请输入需要加密的值">
         </div>
         <div class="button-group">
-          <button id="encrypt_16">加密16位</button>
-          <button id="encrypt_32">加密32位</button>
+          <input type = "text" id="public_key" placeholder="请输入16进制公钥">
+          <button id ="encrypt_16">加密</button>
         </div>
-        <div class="checkbox-group">
-          <input type="checkbox" id="upper">
-          <label for="upper">转换为大写</label>
-        </div>
+        <p>加密结果</p>
         <div class="input-group">
           <input type="text" id="result" placeholder="加密结果" readonly>
         </div>
@@ -98,10 +97,6 @@
       </div>
     </div>
 
-    <script src="/static/js/main-title.js"></script>
-    <script src="/node_modules/particles.js/particles.js"></script>
-    <script src="/md5/js/md5.js"></script>
-    <script src="/static/js/body.js"></script>
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-section">
@@ -128,16 +123,18 @@
       </div>
     </footer>
 
+    <script src="/static/js/main-title.js"></script>
+    <script src="/md5/js/md5.js"></script>
+    <script src="/static/js/body.js"></script>
   </body>
 
   <script>
     <!--button-id -->
 document.addEventListener('DOMContentLoaded', () => {
   const encrypt16 = document.getElementById('encrypt_16');
-  const encrypt32 = document.getElementById('encrypt_32');
   const input = document.getElementById('input');
+  const public_key = document.getElementById('public_key');
   const result = document.getElementById('result');
-  const upperCheckbox = document.getElementById('upper');
 
   const handleEncrypt = async (bits) => {
     const text = input.value.trim();
@@ -148,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch('/api/md5/encrypt', {
+      const response = await fetch('/api/sm2/sm2_encrypt', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -156,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           action: bits,
           input: text,
-          upper: upperCheckbox.checked
+          public_key: public_key.value
         })
       });
 
@@ -171,13 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   encrypt16.addEventListener('click', () => handleEncrypt(16));
-  encrypt32.addEventListener('click', () => handleEncrypt(32));
 });
 </script>
 
 
 <script>
-// 拖拽功能
 let isDragging = false;
 let currentX = 0, currentY = 0;
 const fab = document.getElementById('fabMenu');

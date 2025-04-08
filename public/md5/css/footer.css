@@ -1,0 +1,52 @@
+a {
+    -webkit-tap-highlight-color: transparent;
+  }
+.footer {
+    background: #2c3e50; /* 深色背景提升专业感 */
+    color: #ecf0f1;      /* 浅色文字确保对比度 */
+    padding: 2rem 0;
+    width: 100%;
+    position: relative;   /* 兼容内容不足时的定位 */
+    z-index: 10;         /* 确保悬浮按钮不遮挡 */
+  }
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 自适应列数 */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* 移动端优化 */
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .footer-section ul {
+      justify-content: center !important;
+    }
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .container {
+    flex: 1; /* 主体内容撑满剩余空间 */
+  }
+  .footer {
+    margin-top: auto; /* 关键贴底属性 */
+  }
+  /* 悬浮按钮避让 */
+.fab-container {
+    bottom: 100px !important; /* 根据footer高度调整 */
+    transition: bottom 0.3s;
+  }
+  
+  @media (max-width: 600px) {
+    .fab-container {
+      bottom: 80px !important;
+    }
+  }
